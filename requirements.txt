@@ -5,6 +5,7 @@
 azure-functions
 azure-ai-formrecognizer
 azure-core
+azure.storage.blob
 opencv-python-headless
 numpy
 requests
