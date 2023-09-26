@@ -9,3 +9,4 @@ azure.storage.blob
 opencv-python-headless
 numpy
 requests
+urllib3
