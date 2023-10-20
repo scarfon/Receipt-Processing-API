@@ -124,6 +124,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             response['error'] = str(e)
 
         try:
+            cnpj_kv = ''
             for kv in key_value.key_value_pairs:
                 if "CNPJ" in kv.key.content.upper():
                     cnpj_kv = kv.value.content
