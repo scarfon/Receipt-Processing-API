@@ -9,7 +9,6 @@ import cv2
 import numpy as np
 import requests
 import urllib.parse
-from azure.ai.formrecognizer import FormRecognizerClient
 from azure.ai.formrecognizer import DocumentAnalysisClient
 from azure.core.credentials import AzureKeyCredential
 from azure.storage.blob import BlobServiceClient
@@ -203,9 +202,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             response["merchant_name"] = (
                 merchant_name.value, merchant_name.confidence) if merchant_name else ("", 0.0)
             transaction_date = receipt.fields.get("TransactionDate")
-            response["transaction_date"] = (
-                str(transaction_date.value), transaction_date.confidence) if transaction_date else ("", 0.0)
-            # if receipt.fields.get("Items"):
+            response["transaction_date"] = (transaction_date.value.strftime(
+                '%Y-%m-%d'), transaction_date.confidence) if transaction_date else ("", 0.0)
+            transaction_time = receipt.fields.get("TransactionTime")
+            response["transaction_time"] = (transaction_time.value.strftime(
+                '%H:%M'), transaction_time.confidence) if transaction_time else ("", 0.0)
+            # if receipt.fields.get("Itstsfe"):%%M
             #     response["items"] = []
             #     for idx, item in enumerate(receipt.fields.get("Items").value):
             #         iteml = {}
